@@ -41,9 +41,8 @@ function generateUniqueStudentNumber() {
 
 // Form Validation Function
 function validateForm(name, age, email) {
-    // Name: > 5 chars and contains one whitespace
-    const nameRegex = /^[^\s]+\s[^\s]+$/; 
-    if (name.length <= 5 || !nameRegex.test(name)) {
+    // Name: > 5 chars and contains one whitespace 
+    if (name.length <= 5 || !name.includes(" ")) {
         alert("Error: Name must be > 5 characters and contain exactly one space between names.");
         return false;
     }
@@ -51,12 +50,12 @@ function validateForm(name, age, email) {
     // Age: Number only, > 18 and < 99
     const ageNum = Number(age);
     if (isNaN(ageNum) || ageNum < 18 || ageNum > 99) {
-        alert("Error: Age must be a number between 18 and 99 exclusive.");
+        alert("Error: Age must be a number between 18 and 99.");
         return false;
     }
 
     // Email: ends with @up.edu.ph
-    if (!email.endsWith("@up.edu.ph")) {
+    if (!email.trim().toLowerCase().endsWith("@up.edu.ph")) {
         alert("Error: Email must end with @up.edu.ph");
         return false;
     }
