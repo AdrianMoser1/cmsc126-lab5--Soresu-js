@@ -25,7 +25,7 @@ function time_now() {
 }
 
 //Generate Unique Student Number (2024 + 5 digits)
-function generateUniqueStudent Number() {
+function generateUniqueStudentNumber() {
     let isUnique = false;
     let newID = "";
 
@@ -50,8 +50,8 @@ function validateForm(name, age, email) {
 
     // Age: Number only, > 18 and < 99
     const ageNum = Number(age);
-    if (isNaN(ageNum) || ageNum <= 18 || ageNum >= 99) {
-        alert("Error: Age must be a number between 19 and 98.");
+    if (isNaN(ageNum) || ageNum < 18 || ageNum > 99) {
+        alert("Error: Age must be a number between 18 and 99 exclusive.");
         return false;
     }
 

@@ -1,1 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Registry</title>
+    <style>
+        body {
+            font-family: 'Segoe UI';
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+            background: #f5f5f5;
+            color: #222;
+        }
 
+        h1 { margin-bottom: 6px; }
+
+        /* Date display */
+        #display-date {
+            margin: 8px 0 4px;
+            font-size: 1rem;
+        }
+
+        /*Sections*/
+        .section {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+        .section h2 {
+            margin: 0 0 16px;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+
+        /* Form */
+        .form-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 200px;
+            gap: 4px;
+        }
+        label { font-size: 1rem; font-weight: bold; }
+        input, select {
+            padding: 8px 10px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #555555;
+        }
+
+        /* Buttons */
+        button {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            background: #333;
+            color: #fff;
+        }
+        button:hover { background: #555555; }
+
+        /* Search row */
+        .search-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .search-row input { flex: 1; }
+
+        /* Result display */
+        #search-result, #all-students-list { margin-top: 14px; }
+
+        .result-card {
+            border: 1px solid #ccCCCc;
+            border-radius: 6px;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+        .result-card p {
+            padding: 8px 14px;
+            margin: 0;
+            border-bottom: 1px solid #eee;
+        }
+        .result-card p:last-child { border-bottom: none; }
+        .result-card strong { display: inline-block; width: 120px; color: #555; }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1rem;
+            margin-top: 14px;
+        }
+        th {
+            background: #eee;
+            text-align: left;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+        }
+        td {
+            padding: 7px 12px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Student Registry</h1>
+    <button onclick="time_now()">Show Current Date</button>
+    <p id="display-date"></p>
+
+    <!-- Section 1: Add Student -->
+    <div class="section">
+        <h2>Add New Student</h2>
+        <form id="student-form" onsubmit="add_student(event)" autocomplete="off">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="student-name">Full Name</label>
+                    <input type="text" id="student-name" placeholder="e.g. Juan dela Cruz" required />
+                </div>
+                <div class="form-group">
+                    <label for="student-age">Age</label>
+                    <input type="number" id="student-age" min = "19" max ="98" placeholder="18 – 99" required /> <!-- When using the iterator it does not go beyond these values-->
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="student-email">Email</label>
+                    <input type="text" id="student-email" placeholder="username@up.edu.ph" required />
+                </div>
+                <div class="form-group">
+                    <label for="student-course">Course</label>
+                    <select id="student-course" required>
+                        <option value="" disabled selected> Select a course </option>
+                        <option value="BA Food Appreciation">BA Food Appreciation</option>
+                        <option value="BA Applied Poetry of the Future">BA Applied Poetry of the Future</option>
+                        <option value="BS Computer Repair Shop">BS Computer Repair Shop</option>
+                        <option value="BS Video Gaming">BS Video Gaming</option>
+                        <option value="BS Installing and Downloading">BS Installing and Downloading</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit">SUBMIT</button>
+        </form>
+    </div>
+
+    <!-- Section 2: Search Student -->
+    <div class="section">
+        <h2>Search Student</h2>
+        <div class="search-row">
+            <input type="text" id="search-id" placeholder="Enter Student Number (e.g. 202448594)" />
+            <button onclick="find_student()">Search Student</button>
+        </div>
+        <div id="search-result"></div>
+    </div>
+
+    <!-- Section 3: Display All -->
+    <div class="section">
+        <h2>All Students</h2>
+        <button onclick="display_list()">Display All</button>
+        <div id="all-students-list"></div>
+    </div>
+
+    <script src="lab5_scripts.js"></script>
+</body>
+</html>
