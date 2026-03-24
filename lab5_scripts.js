@@ -49,8 +49,8 @@ function validateForm(name, age, email) {
 
     // Age: Number only, > 18 and < 99
     const ageNum = Number(age);
-    if (isNaN(ageNum) || ageNum < 18 || ageNum > 99) {
-        alert("Error: Age must be a number between 18 and 99.");
+    if (isNaN(ageNum) || ageNum < 19 || ageNum > 98) {
+        alert("Error: Age must be a number between 18 and 99. Exclusive");
         return false;
     }
 
